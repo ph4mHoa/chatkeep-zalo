@@ -1,0 +1,14 @@
+{
+  "name": {
+    "message": "ChatKeep – chat export for Zalo",
+    "description": "Extension name (the store title)"
+  },
+  "description": {
+    "message": "Saves your Zalo Web chats as JSON, HTML and TXT files on your computer, with photos and files. Not affiliated with Zalo or VNG.",
+    "description": "Store summary, 132 characters at most"
+  },
+  "action_title": {
+    "message": "ChatKeep for Zalo",
+    "description": "Toolbar button tooltip"
+  }
+}

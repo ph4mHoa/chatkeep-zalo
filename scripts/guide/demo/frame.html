@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- A browser window drawn around two screenshots (the demo Zalo page and the side panel), for the
+     user guide's overview picture. shoot.mjs copies it next to zalo.png, panel.png and icon.png.
+     The store pictures and the demo video (shoot.mjs --store) add options: ?w= (window width),
+     zalo= and panel= (other screenshots; panel=none leaves the panel empty), tip=0 (no callout),
+     caption= (a line over the Zalo page). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1440px; height: 900px; overflow: hidden; font: 13px system-ui, sans-serif; color: #202124; background: #fff; }
+  .tabs { height: 38px; background: #dee1e6; display: flex; align-items: flex-end; padding-left: 12px; }
+  .tab { height: 32px; width: 250px; background: #fff; border-radius: 9px 9px 0 0; display: flex; align-items: center; gap: 9px; padding: 0 12px; }
+  .fav { width: 16px; height: 16px; border-radius: 4px; background: #0068ff; }
+  .tab .x { margin-left: auto; color: #5f6368; }
+  .bar { height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-bottom: 1px solid #dadce0; }
+  .nav { color: #5f6368; font-size: 18px; width: 22px; text-align: center; }
+  .addr { flex: 1; height: 32px; border-radius: 16px; background: #f1f3f4; display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 14px; }
+  .addr .lock { color: #5f6368; }
+  .ext { position: relative; display: flex; align-items: center; gap: 4px; }
+  .ext .btn { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; }
+  .ext .btn svg { width: 18px; height: 18px; fill: #5f6368; }
+  .ext .ours { background: #d3e3fd; box-shadow: 0 0 0 3px #0b57d0; }
+  .ext .ours img { width: 18px; height: 18px; }
+  .pin { position: relative; }
+  .tip { position: absolute; right: calc(100% + 14px); top: 50%; transform: translateY(-50%); background: #0b57d0; color: #fff; padding: 6px 12px; border-radius: 8px; white-space: nowrap; font-weight: 600; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+  .tip::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-right: 0; border-left-color: #0b57d0; }
+  .main { display: flex; height: 817px; position: relative; }
+  .cap { position: absolute; left: calc((100% - 401px) / 2); bottom: 30px; transform: translateX(-50%); width: max-content; max-width: 88%; background: rgba(8, 28, 54, .88); color: #fff; font: 600 23px/1.35 Lato, "DejaVu Sans", system-ui, sans-serif; padding: 13px 24px; border-radius: 12px; text-align: center; box-shadow: 0 6px 18px rgba(0, 0, 0, .28); }
+  .page { width: 1039px; height: 817px; }
+  .side { width: 401px; border-left: 1px solid #dadce0; }
+  .side .head { height: 36px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-bottom: 1px solid #ececec; font-weight: 600; }
+  .side .head img { width: 16px; height: 16px; }
+  .side .head .x { margin-left: auto; color: #5f6368; font-weight: 400; font-size: 16px; }
+  img.shot { display: block; }
+</style>
+</head>
+<body>
+  <div class="tabs"><div class="tab"><span class="fav"></span>Zalo Web<span class="x">×</span></div></div>
+  <div class="bar">
+    <span class="nav">←</span><span class="nav">→</span><span class="nav">⟳</span>
+    <div class="addr"><span class="lock">🔒</span>chat.zalo.me</div>
+    <div class="ext">
+      <span class="pin"><span class="btn ours"><img src="icon.png" alt=""></span><span class="tip">Click to open ChatKeep</span></span>
+      <span class="btn"><svg viewBox="0 0 24 24"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg></span>
+      <span class="btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></span>
+    </div>
+  </div>
+  <div class="main">
+    <img class="shot page" src="zalo.png" alt="">
+    <div class="side">
+      <div class="head"><img src="icon.png" alt="">ChatKeep – chat export for Zalo<span class="x">×</span></div>
+      <img class="shot" src="panel.png" alt="" width="400" height="781">
+    </div>
+    <div class="cap" hidden></div>
+  </div>
+<script>
+  const q = new URLSearchParams(location.search);
+  if (q.get('w')) { document.body.style.width = q.get('w') + 'px'; document.querySelector('.page').style.width = (q.get('w') - 401) + 'px'; }
+  if (q.get('zalo')) document.querySelector('.page').src = q.get('zalo');
+  const panel = document.querySelector('.side .shot');
+  if (q.get('panel') === 'none') panel.style.visibility = 'hidden';
+  else if (q.get('panel')) panel.src = q.get('panel');
+  if (q.get('tip') === '0') document.querySelector('.tip').hidden = true;
+  if (q.get('caption')) Object.assign(document.querySelector('.cap'), { textContent: q.get('caption'), hidden: false });
+</script>
+</body>
+</html>

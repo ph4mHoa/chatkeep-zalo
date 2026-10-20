@@ -1,0 +1,11 @@
+{
+  "name": {
+    "message": "ChatKeep – xuất tin nhắn cho Zalo"
+  },
+  "description": {
+    "message": "Lưu tin nhắn Zalo Web thành file JSON, HTML và TXT trên máy tính, kèm ảnh và tệp đính kèm. Không liên kết với Zalo hay VNG."
+  },
+  "action_title": {
+    "message": "ChatKeep cho Zalo"
+  }
+}

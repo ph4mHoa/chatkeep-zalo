@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- Stand-in for chat.zalo.me in the user guide's pictures (made-up chats; see zalo.js). -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Zalo Web</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.35 system-ui, "Segoe UI", Roboto, sans-serif; color: #081c36; background: #fff; height: 100vh; overflow: hidden; }
+  #app { display: flex; height: 100vh; }
+  .rail { width: 64px; background: #0068ff; display: flex; flex-direction: column; align-items: center; padding: 14px 0; gap: 10px; }
+  .rail .me { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff; margin-bottom: 14px; }
+  .rail .ico { width: 48px; height: 48px; border-radius: 8px; display: grid; place-items: center; }
+  .rail .ico.on { background: rgba(0, 0, 0, .18); }
+  .rail .ico svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.8; }
+  .rail .grow { flex: 1; }
+  .list { width: 340px; border-right: 1px solid #e1e4ea; display: flex; flex-direction: column; }
+  .search { padding: 14px 16px 8px; display: flex; gap: 8px; }
+  .search div { flex: 1; background: #eaedf0; border-radius: 6px; padding: 8px 12px; color: #7589a3; }
+  .filters { display: flex; gap: 18px; padding: 6px 16px; border-bottom: 1px solid #e1e4ea; font-size: 13px; color: #5a6981; }
+  .filters .on { color: #0068ff; font-weight: 600; border-bottom: 2px solid #0068ff; padding-bottom: 6px; }
+  .conv { display: flex; gap: 12px; padding: 11px 16px; align-items: center; }
+  .conv.sel { background: #e5efff; }
+  .conv .body { flex: 1; min-width: 0; }
+  .conv .top { display: flex; justify-content: space-between; gap: 8px; }
+  .conv .name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .conv .time { font-size: 12px; color: #7589a3; flex: none; }
+  .conv .prev { font-size: 13px; color: #7589a3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .av { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 600; flex: none; font-size: 16px; }
+  .chat { flex: 1; display: flex; flex-direction: column; background: #eef0f1; min-width: 0; }
+  .chat header { height: 68px; background: #fff; border-bottom: 1px solid #e1e4ea; display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+  .chat header .t { font-weight: 600; font-size: 16px; }
+  .chat header .s { font-size: 13px; color: #7589a3; }
+  .msgs { flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px 20px; gap: 4px; }
+  .day { align-self: center; background: rgba(0, 0, 0, .28); color: #fff; font-size: 12px; border-radius: 10px; padding: 2px 10px; margin: 8px 0; }
+  .m { display: flex; flex-direction: column; align-items: flex-start; max-width: 72%; }
+  .m.mine { align-self: flex-end; align-items: flex-end; }
+  .m .who { font-size: 12px; color: #7589a3; margin: 6px 0 2px 2px; }
+  .m .b { background: #fff; border-radius: 10px; padding: 8px 12px; box-shadow: 0 1px 1px rgba(0, 0, 0, .06); }
+  .m.mine .b { background: #dbebff; }
+  .m img { width: 220px; border-radius: 10px; display: block; }
+  .m .st { font-size: 44px; line-height: 1; }
+  .m .ts { font-size: 11px; color: #7589a3; margin-top: 3px; }
+  .input { background: #fff; border-top: 1px solid #e1e4ea; padding: 14px 16px; color: #7589a3; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="/demo/zalo.js"></script>
+</body>
+</html>

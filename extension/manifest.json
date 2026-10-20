@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_name__",
+  "short_name": "ChatKeep Z",
+  "version": "0.1.0",
+  "default_locale": "en",
+  "description": "__MSG_description__",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "downloads",
+    "downloads.ui",
+    "sidePanel",
+    "scripting",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://chat.zalo.me/*"
+  ],
+  "background": {
+    "service_worker": "sw.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "action": {
+    "default_title": "__MSG_action_title__",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.zalo.me/*"
+      ],
+      "js": [
+        "modules/chats/normalize.js",
+        "modules/chats/content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://chat.zalo.me/*"
+      ],
+      "js": [
+        "modules/chats/bridge.js"
+      ],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ]
+}

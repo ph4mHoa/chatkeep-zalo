@@ -1,0 +1,91 @@
+<!-- Chats module: side panel view (loaded into the panel by view.js). -->
+<div class="status">
+  <div id="conn" class="conn"><span class="dot"></span><span id="connText">Checking the tab…</span></div>
+  <button id="openZalo" class="link hidden">Open Zalo</button>
+</div>
+
+<section>
+  <div class="sec-head">
+    <h2>1 · Chats</h2>
+    <div class="row gap">
+      <button id="scan" title="Read the chat list with details: where each chat's history on this device starts">Scan</button>
+      <button id="refresh" class="secondary" title="Read the chat list again: new chats, names, latest activity">Refresh</button>
+    </div>
+  </div>
+  <div class="row gap">
+    <input id="filter" type="search" placeholder="Filter chats" autocomplete="off">
+    <label class="check small"><input id="selectAll" type="checkbox"> all</label>
+  </div>
+  <div class="row gap hint">
+    <div class="seg small" role="radiogroup" aria-label="Show">
+      <label><input type="radio" name="show" value="all" checked><span>All</span></label>
+      <label><input type="radio" name="show" value="groups"><span>Groups</span></label>
+      <label><input type="radio" name="show" value="private"><span>Private</span></label>
+    </div>
+  </div>
+  <p id="listInfo" class="muted small">No chat list yet. Press <b>Scan</b>.</p>
+  <ul id="convs" class="threads"></ul>
+</section>
+
+<section>
+  <h2>2 · What to export</h2>
+  <div class="field">
+    <span class="label">Content</span>
+    <div class="seg" role="radiogroup" aria-label="Content">
+      <label><input type="radio" name="mode" value="text" checked><span>Text only</span></label>
+      <label><input type="radio" name="mode" value="photos"><span>+ Photos</span></label>
+      <label><input type="radio" name="mode" value="all"><span>+ All media</span></label>
+    </div>
+    <p id="modeHint" class="muted small"></p>
+  </div>
+  <div class="field">
+    <span class="label">Time range</span>
+    <div class="seg" role="radiogroup" aria-label="Time range">
+      <label><input type="radio" name="range" value="all" checked><span>Everything</span></label>
+      <label><input type="radio" name="range" value="custom"><span>From – to</span></label>
+    </div>
+    <div id="rangeInputs" class="row gap hidden">
+      <input id="from" type="date" aria-label="From"><span class="muted">→</span><input id="to" type="date" aria-label="To">
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">One file per</span>
+    <div class="seg" role="radiogroup" aria-label="Split files">
+      <label><input type="radio" name="split" value="none" checked><span>Chat</span></label>
+      <label><input type="radio" name="split" value="day"><span>Day</span></label>
+      <label><input type="radio" name="split" value="week"><span>Week</span></label>
+      <label><input type="radio" name="split" value="month"><span>Month</span></label>
+    </div>
+  </div>
+  <div class="field">
+    <span class="label">Formats</span>
+    <div class="row gap wrap">
+      <label class="check"><input type="checkbox" name="format" value="json" checked> JSON</label>
+      <label class="check"><input type="checkbox" name="format" value="html" checked> HTML</label>
+      <label class="check"><input type="checkbox" name="format" value="txt" checked> TXT</label>
+    </div>
+    <label class="check wraps small muted"><input id="rewrite" type="checkbox"> Rewrite all files (if you deleted or moved exported files)</label>
+    <label class="check wraps small muted"><input id="recheck" type="checkbox"> Check the whole history again (after syncing messages from your phone)</label>
+  </div>
+</section>
+
+<section>
+  <div class="row gap">
+    <button id="start" class="primary">Start export</button>
+    <button id="stop" class="secondary hidden">Stop</button>
+    <button id="resume" class="secondary hidden">Resume</button>
+    <button id="rebuild" class="link" title="Write the files again from what is already archived, without reading Zalo">Files only</button>
+  </div>
+  <div id="progress" class="progress hidden">
+    <div class="p-title"><span id="pConv"></span><span id="pCount" class="muted"></span></div>
+    <div id="pPhase" class="small"></div>
+    <div class="bar"><i id="pBar"></i></div>
+    <div id="mediaBox" class="hidden">
+      <div class="small"><span>Files</span> <b id="pMedia">0/0</b> <span id="pMediaNote" class="muted"></span></div>
+      <div class="bar thin"><i id="pMediaBar"></i></div>
+    </div>
+  </div>
+  <details id="logBox" class="log hidden"><summary>Log</summary><ol id="log"></ol></details>
+  <p class="muted small foot">Everything stays on this computer: chats are archived in this browser and written to your
+    Downloads folder under <b>Zalo_Export/</b>. Only what this device's Zalo has can be exported. Not affiliated with Zalo or VNG.</p>
+</section>

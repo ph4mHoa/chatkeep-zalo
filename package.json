@@ -1,0 +1,15 @@
+{
+  "name": "chatkeep-zalo",
+  "private": true,
+  "type": "module",
+  "description": "ChatKeep – chat export for Zalo (Chrome extension). The extension itself is in extension/.",
+  "scripts": {
+    "test": "TZ=Asia/Ho_Chi_Minh node --test \"test/*.test.mjs\"",
+    "package": "bash scripts/package.sh",
+    "guide-images": "node scripts/guide/shoot.mjs",
+    "store-assets": "node scripts/guide/shoot.mjs --store"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^6.2.5"
+  }
+}

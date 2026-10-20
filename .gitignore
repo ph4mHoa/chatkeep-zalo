@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.zip
+*.crx
+*.pem
+.DS_Store
+# exports and raw probe output hold message content: never commit them
+Zalo_Export/
+**/raw/

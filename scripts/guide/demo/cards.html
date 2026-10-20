@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- Cards for the store listing and the demo video (shoot.mjs --store), one per ?card=:
+     title and end (the video's first and last screen), exports (the exported HTML and TXT side by
+     side), tile (the store's small promo tile, 440×280). ?w= sets the width of the 900 px tall
+     cards. shoot.mjs copies it next to icon128.png, s-html.png and s-txt.png. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body { width: 1600px; height: 900px; overflow: hidden; font-family: Lato, "DejaVu Sans", system-ui, sans-serif; }
+  .card { display: none; width: 100%; height: 100%; }
+  .brand { background: linear-gradient(135deg, #00857f 0%, #0a5c73 100%); color: #fff; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 18px; }
+  .brand img { width: 150px; height: 150px; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .25)); }
+  .brand h1 { font-size: 86px; font-weight: 800; letter-spacing: -1px; }
+  .brand h1 small { display: block; font-size: 38px; font-weight: 400; letter-spacing: 0; opacity: .92; margin-top: 4px; }
+  .brand .line { font-size: 32px; max-width: 1100px; line-height: 1.35; margin-top: 18px; }
+  .brand .note { font-size: 24px; opacity: .8; margin-top: 26px; }
+  .exports { background: #f0f2f5; color: #1c1e21; flex-direction: column; align-items: center; justify-content: center; gap: 34px; }
+  .exports h2 { font-size: 44px; font-weight: 800; }
+  .exports p { font-size: 25px; color: #4b4f56; margin-top: -18px; text-align: center; max-width: 1200px; line-height: 1.35; }
+  .exports .two { display: flex; gap: 44px; align-items: center; }
+  .exports img { display: block; border-radius: 10px; box-shadow: 0 8px 30px rgba(0, 0, 0, .18); }
+  .exports .html { height: 600px; }
+  .exports .txt { width: 600px; }
+  .tile { background: linear-gradient(135deg, #00857f 0%, #0a5c73 100%); color: #fff; align-items: center; gap: 22px; padding: 0 30px; }
+  .tile img { width: 118px; height: 118px; flex: none; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25)); }
+  .tile b { display: block; font-size: 46px; font-weight: 800; letter-spacing: -.5px; }
+  .tile span { display: block; font-size: 21px; opacity: .95; margin-top: 2px; }
+  .tile i { display: inline-block; font-style: normal; font-size: 15px; font-weight: 700; margin-top: 14px; padding: 5px 10px; border-radius: 6px; background: rgba(255, 255, 255, .18); }
+</style>
+</head>
+<body>
+  <div class="card brand" id="title">
+    <img src="icon128.png" alt="">
+    <h1>ChatKeep<small>chat export for Zalo</small></h1>
+    <p class="line">Save your Zalo Web chats as JSON, HTML and TXT files, with photos and files.</p>
+    <p class="note">Demo with sample chats: every name and message is made up.</p>
+  </div>
+  <div class="card brand" id="end">
+    <img src="icon128.png" alt="">
+    <h1>Everything stays on your computer</h1>
+    <p class="line">No server, nothing sent anywhere: the files go to your Downloads folder.</p>
+    <p class="note">ChatKeep is not affiliated with, endorsed by or sponsored by Zalo or VNG.</p>
+  </div>
+  <div class="card exports" id="exports">
+    <h2>Your chats, readable offline</h2>
+    <p>HTML to read, TXT to search, JSON for other tools. Messages recalled or deleted on Zalo later stay in the files, marked.</p>
+    <div class="two"><img class="html" src="s-html.png" alt=""><img class="txt" src="s-txt.png" alt=""></div>
+  </div>
+  <div class="card tile" id="tile">
+    <img src="icon128.png" alt="">
+    <div><b>ChatKeep</b><span>chat export for Zalo</span><i>JSON · HTML · TXT · photos</i></div>
+  </div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const card = q.get('card') || 'title';
+  if (card === 'tile') Object.assign(document.body.style, { width: '440px', height: '280px' });
+  else if (q.get('w')) document.body.style.width = q.get('w') + 'px';
+  document.getElementById(card).style.display = 'flex';
+</script>
+</body>
+</html>
